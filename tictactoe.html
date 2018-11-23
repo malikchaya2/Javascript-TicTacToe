@@ -1,0 +1,234 @@
+ <head>
+  <title>Chaya Malik- Homework3</title>
+  <header><h1>Tic Tac Toe</h1></header>
+    <style>
+    .Square{
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        font-size: 18pt;
+        font-weight: bold;
+        font-family: Verdana;
+    }
+    </style>
+    <script>
+    
+    
+   // function main() {
+   //   alert("starting")
+   // }
+
+    function personMove(square) {
+      if(won()){
+          return 
+        }
+        else{
+          move(square);
+        }
+    }
+    
+    function move(square) {
+      if (square.innerText == "") {
+        // alert(square);
+        square.innerText = "X";
+        if(won()){
+          return 
+        }
+        else{
+          computerMove();
+        } 
+        
+      }
+      else{
+        alert("square is already taken")
+      }
+      // document.getElementById(7).innerText = "P";
+      // get(6) == "X";
+
+    }
+    function get(a) { //takes in id, gets X or O 
+      return document.getElementById(a).innerText;
+    }
+
+    function row(a, b, c){//takes in id, returns id of element that's almost a win 
+      if( get(a)== get(b) && get(b)== get(c)){
+        return get(a); 
+      }
+      else{
+        return false;  
+      } 
+    } 
+ 
+    function won() {
+      if(row(1, 5, 9 )!= false){
+        alert(row(1,5,9) + " won");
+        reset();
+        return true;
+      }
+      if(row(3, 5, 7 )!= false){
+        alert(row(3,5,7) + " won");
+        reset();
+        return true;
+      }
+      if(row(1, 2, 3 )!= false){
+        alert(row(1,2,3) + " won");
+        reset();
+        return true;
+      }
+      if(row(4, 5, 6 )!= false){
+        alert(row(4,5,6) + " won");
+        reset();
+        return true;
+      }
+      if(row(7, 8, 9 )!= false){
+        alert(row(7,8,9) + " won");
+        reset();
+        return true;
+      }
+      if(row(1, 4, 7 )!= false){
+        alert(row(1,4,7) + " won");
+        reset();
+        return true;
+      }
+      if(row(2, 5, 8 )!= false){
+        alert(row(2,5,8) + " won");
+        reset();
+        return true;
+      }
+      if(row(3, 6, 9 )!= false){
+        alert(row(3,6,9) + " won");
+        reset();
+        return true;
+      }
+    }
+
+
+    function almostRow(a, b, c){//takes in id, returns id of element that's almost a win 
+      if( get(a)== "X" && get(b)=="X"){
+        return c; 
+      }
+      if( get(b)== "X" && get(c)=="X"){
+        return a; 
+      }
+      if( get(a)== "X" && get(c)=="X"){
+        return b; 
+      }
+      else{
+        return null;  
+      }
+    } 
+    
+    function reset() {
+     document.getElementById(7).innerText = "";
+     document.getElementById(1).innerText = "";
+     document.getElementById(2).innerText = "";
+     document.getElementById(3).innerText = "";
+     document.getElementById(4).innerText = "";
+     document.getElementById(5).innerText = "";
+     document.getElementById(6).innerText = "";
+     document.getElementById(8).innerText = "";
+     document.getElementById(9).innerText = "";
+    }
+
+    function computerMove(){
+      // if(won()){
+      //     return 
+      //   }
+      //   else{
+
+          var row1 = almostRow(1, 2, 3); 
+          var row2 = almostRow(4, 5, 6);
+          var row3 = almostRow(7, 8, 9);
+          var col1 = almostRow(1, 4, 7);
+          var col2 = almostRow(2, 5, 8);
+          var col3 = almostRow(3, 6, 9);
+          var diag1 = almostRow(1, 5, 9);
+          var diag2 = almostRow(3, 5, 7);
+
+          if(get(5)==""){
+              document.getElementById(5).innerText = "O"; 
+          }
+          else if( row1 !=null && get(row1) == ""){
+                document.getElementById(row1).innerText = "O";
+          }
+          else if( row2 !=null && get(row2) == ""){
+                document.getElementById(row2).innerText = "O";
+          }
+          else if( row3 !=null && get(row3) == ""){
+                document.getElementById(row3).innerText = "O";
+          }
+          else if( col1 !=null && get(col1) == ""){
+                document.getElementById(col1).innerText = "O";
+          }
+          else if( col2 !=null && get(col2) == ""){
+                document.getElementById(col2).innerText = "O";
+          }
+          else if( col3 !=null && get(col3) == ""){
+                document.getElementById(col3).innerText = "O";
+          }
+          else if( diag1 !=null && get(diag1) == ""){
+                document.getElementById(diag1).innerText = "O";
+          }
+          else if( diag2 !=null && get(diag2) == ""){
+                document.getElementById(diag2).innerText = "O";
+          }
+          else{
+            random();
+          }
+      }
+      
+    //}
+
+    
+
+    function random() {
+     if(get(7)==""){
+        document.getElementById(7).innerText = "O";
+      }
+      else if(get(8)==""){
+        document.getElementById(8).innerText = "O";
+      }
+      else if(get(9)==""){
+        document.getElementById(9).innerText = "O";
+      }
+      else if(get(1)==""){
+        document.getElementById(1).innerText = "O";
+      }
+      else if(get(2)==""){
+        document.getElementById(2).innerText = "O";
+      }
+      else if(get(3)==""){
+        document.getElementById(3).innerText = "O";
+      }
+      else if(get(4)==""){
+        document.getElementById(4).innerText = "O";
+      }
+      else if (get(6) == ""){
+        document.getElementById(6).innerText = "O";
+      }
+      else{
+        alert("it's a tie");
+        reset();
+      }
+    }
+
+    </script>
+  </head>
+<body onload="main()"></body>
+<table border="1">
+  <tr >
+    <td id="1" class="Square" onclick="personMove(this);"></td>
+    <td id="2" class="Square" onclick="personMove(this);"></td>
+    <td id="3" class="Square" onclick="personMove(this);"></td>
+  </tr>
+  <tr>
+    <td id="4" class="Square" onclick="personMove(this);"></td>
+    <td id="5" class="Square" onclick="personMove(this);"></td>
+    <td id="6" class="Square" onclick="personMove(this);"></td>
+  </tr>
+  <tr>
+    <td id="7" class="Square" onclick="personMove(this);"></td>
+   <td  id="8" class="Square" onclick="personMove(this);"></td>
+    <td id="9" class="Square" onclick="personMove(this);"></td>
+  </tr>
+</table>
